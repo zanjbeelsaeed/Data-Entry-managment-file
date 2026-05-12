@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student management System</title>
+    <link rel="icon" href="logo.jfif">
+    <!-- bootstrap 5 CSS CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- CSS file Link -->
+      <link rel="stylesheet" href="style.css">
+
+</head>
+ <body>
+    <div class="container">
+        <!-- nav-pills create the button in nav -->
+        <ul class="nav nav-pills justify-content-center">
+            <li class="nav-item">
+                <a href="#myid" class="nav-link active" data-bs-toggle="pill">CREATE</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#readtable" class="nav-link" data-bs-toggle="pill" 
+                onclick="readrecord()">READ</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#search" class="nav-link" data-bs-toggle="pill">SEARCH</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#update" class="nav-link" data-bs-toggle="pill">UPDATE</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#delete" class="nav-link" data-bs-toggle="pill">DELETE</a>
+            </li>
+        </ul>
+
+        <!-- TO Convert the tab for example if we open multiple page on single page -->
+         <div class="tab-content">
+            <!-- create tab -->
+            <div class="tab-pane active" id="myid">
+           <h1 class="text-center text-primary mt-5">CREATE STUDENT RECORD</h1>
+           <form action="" class="form" autocomplete="off">
+            <div class="form-group">
+                <label for="">STUDENT ID</label>
+                <input type="text" id="stdid" class="form-control">
+
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="">STUDENT NAME</label>
+                <input type="text" id="stdname" class="form-control">
+
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="">STUDENT CLASS</label>
+                <input type="text" id="stdclass" class="form-control">
+
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="">STUDENT CGPA</label>
+                <input type="text" id="stdcgpa" class="form-control">
+                    <!-- form control ko hum div k according width dny k liye use krty hain -->
+            </div>
+
+            <div class="form-group mt-3">
+                <button class="btn btn-primary" type="button" onclick="createRecord()">CREATE</button>
+            </div>
+                 <!-- agar koi error show ho to -->
+            <p id="msg" class="text-center text-danger mt-5"></p>
+           </form>
+            </div>
+                <!-- read tab -->
+            <div class="tab-pane fade" id="readtable">
+                <h1 class="text-center text-primary mt-5">READ STUDENT RECORD</h1>
+                <table border="1"  class="table mt-5" id="read">
+                    <tr>
+                        <th>STUDENT ID</th>
+                        <th>NAME</th>
+                        <th>CLASS</th>
+                        <th>CGPA</th>
+
+                    </tr>
+                    <tr>
+                        <td colspan="4">No Record found</td>
+                    </tr>
+                </table>
+            </div>
+                <!-- search tab -->
+            <div class="tab-pane" id="search">
+                <h1 class="text-center text-primary mt-3">SEARCH STUDENT RECORD</h1>
+                <form class="form mt-5">
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" id="searchid" placeholder="ENTER STUDENT ID"
+                            class="form-control">
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-primary form-control"
+                             onclick="searchrecord()">Search</button>
+                        </div>
+
+                    </div>
+
+                </form>
+                <table class="table mt-3" id="searchtable">
+                    <tr>
+                        <th>STUDENT ID</th>
+                        <th>NAME</th>
+                        <th>CLASS</th>
+                        <th>CGPA</th>
+
+                    </tr>
+                    
+
+                </table>
+            </div>
+                <!-- update tab -->
+                 
+            <div class="tab-pane" id="update">
+                <h1 class="text-center text-primary mt-3">UPDATE THE STUDENT RECORD</h1>
+                <form action="" class="form" autocomplete="off">
+                    <div class="form-group">
+                        <label for="">STUDENT ID</label>
+                        <input type="text" id="updateid" class="form-control">
+        
+                    </div>
+        
+                    <div class="form-group mt-3">
+                        <label for="">STUDENT NAME</label>
+                        <input type="text" id="updatename" class="form-control">
+        
+                    </div>
+        
+                    <div class="form-group mt-3">
+                        <label for="">STUDENT CLASS</label>
+                        <input type="text" id="updateclass" class="form-control">
+        
+                    </div>
+        
+                    <div class="form-group mt-3">
+                        <label for="">STUDENT CGPA</label>
+                        <input type="text" id="updatecgpa" class="form-control">
+                            <!-- form control ko hum div k according width dny k liye use krty hain -->
+                    </div>
+        
+                    <div class="form-group mt-3">
+                        <button class="btn btn-primary" type="button" onclick="updateRecord()">UPDATE</button>
+                    </div>
+        <!-- agar koi error show ho to -->
+        
+                   </form>
+                
+            </div>
+                <!-- delete tab -->
+                
+            <div class="tab-pane" id="delete">
+                <h1 class="text-center text-primary mt-3">DELETE STUDENT RECORD</h1>
+                <form class="form mt-5">
+                    <div class="row">
+                        <div class="col-10">
+                            <input type="text" id="deleteid" placeholder="ENTER STUDENT ID"
+                            class="form-control">
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="btn btn-danger form-control"
+                             onclick="deleterecord()">Delete</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+         </div>
+    </div>
+
+    <!-- Bootstrap 5 javascript CDN link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- custom javascript -->
+
+<script>
+
+        let studentRecord = [];
+        let numberofstudent = 0;
+        function createRecord()
+        {
+            let stdid = document.getElementById('stdid').value;
+            let stdname = document.getElementById('stdname').value;
+            let stdclass = document.getElementById('stdclass').value;
+            let stdcgpa = document.getElementById('stdcgpa').value;
+
+            if(stdid == "")
+        {
+            document.getElementById('msg').innerText = "***PLEASE FILL STUDENT ID";
+        }
+
+        else if(stdname == "")
+        {
+            document.getElementById('msg').innerText = "***PLEASE FILL STUDENT NAME";
+        }
+
+        else if(stdclass == "")
+        {
+            document.getElementById('msg').innerText = "***PLEASE FILL STUDENT CLASS";
+        }
+
+        else if(stdcgpa == "")
+        {
+            document.getElementById('msg').innerText = "***PLEASE FILL STUDENT CGPA";
+        }
+
+        else
+        {
+            //es k ander numberof student store ho gy means array k index 0 py
+            // 0 index py ja k ak or array banani h jis ko multi desmission array kehty hin
+            // to 0 index py apny variable ko write krna h
+            studentRecord[numberofstudent] =[];
+            studentRecord[numberofstudent][0] = stdid;
+            studentRecord[numberofstudent][1] = stdname;
+            studentRecord[numberofstudent][2] = stdclass;
+            studentRecord[numberofstudent][3] = stdcgpa;
+            //phly py row or 2nd py column aty hain
+            numberofstudent++;
+            // empty kr do sri input field ko to sri id ko terget krna h
+            //but let k variable k sth nahi
+             stdid = document.getElementById('stdid').value ="";
+             stdname = document.getElementById('stdname').value ="";
+             stdclass = document.getElementById('stdclass').value ="";
+             stdcgpa = document.getElementById('stdcgpa').value ="";
+             document.getElementById('msg').innerText = "";
+             // humy record show b ho
+
+             alert("New student Record Created successfully");
+
+
+        }
+     }
+
+        //read create js
+
+        // sb sy phly id ko fetch krna ha
+        function readrecord()
+        {
+            // agr numberof std 0 zy zyda hain to table me record ha
+            if( numberofstudent > 0)
+        {
+            //condition true hony py
+
+            let table = document.getElementById('read');
+
+            // table var ki madad sy apny table ki length find krna
+
+            let count = table.getElementsByTagName('tr').length;
+
+            // head row ko chor k bki sb ko remove kr dy
+            // 
+
+            for (let i = count - 1; i > 0; i--)
+        { 
+            //tr k andr sy jo i ha usko remove kr do
+            table.getElementsByTagName('tr')[i].remove();
+        }
+
+        //new row ko embed kr dy
+
+        for(let i=0; i< numberofstudent; i++)
+        {
+            //dynamically row bnae ni ha
+
+            let tr = document.createElement('tr');
+
+            // 4 field hain es liye 4 td bnany hain
+            let td1 = document.createElement('td');
+            let td2 = document.createElement('td');
+            let td3 = document.createElement('td');
+            let td4 = document.createElement('td');
+
+            //td1 ka mtlb ha k jo es k ande text ha usko mry stdrecord ki 0
+            // py pray howy data k equal kr do
+            td1.textContent = studentRecord[i][0]
+            td2.textContent = studentRecord[i][1]
+            td3.textContent = studentRecord[i][2]
+            td4.textContent = studentRecord[i][3]
+          //             phr data ko row me store kr do
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+            tr.append(td4);
+            // ab row ko table k ander rakh do
+            table.append(tr);
+
+
+
+        }
+        }
+        }
+    // search tab js
+        
+    function searchrecord()
+    {
+
+        //agr zero sy bari h mtlb record h
+
+        if(numberofstudent>0)
+    {
+
+        //target kro id ko or table ko
+        let id= document.getElementById('searchid').value;
+        let table=document.getElementById('searchtable');
+        let found=0;
+
+        //agr to empty h to to alert ay ga
+        if(id=="")
+
+    {
+        alert("Please Enter Student ID For Search");
+    }
+    
+    else
+    {
+        //agr hum chahty hain jb hum new record search kry to phly wala remove ho jay
+        let count = table.getElementsByTagName('tr').length;
+
+         // head row ko chor k bki sb ko remove kr dy 
+
+       for (let i = count - 1; i > 0; i--)
+       { 
+         //tr k andr sy jo i ha usko remove kr do
+        table.getElementsByTagName('tr')[i].remove();
+        }
+          // mtlb koi id h to
+        for( let i=0;i< numberofstudent;i++)
+    {
+        //check kro k mri id k 0 index py koi id h to if me jao
+        if(id==studentRecord[i][0])
+    {
+        //new roe add kro
+             let tr = document.createElement('tr');
+
+             // 4 field hain es liye 4 td bnany hain
+            let td1 = document.createElement('td');
+            let td2 = document.createElement('td');
+            let td3 = document.createElement('td');
+            let td4 = document.createElement('td');
+
+            //td1 ka mtlb ha k jo es k ande text ha usko mry stdrecord ki 0
+           // py pray howy data k equal kr do
+            td1.textContent = studentRecord[i][0]
+            td2.textContent = studentRecord[i][1]
+            td3.textContent = studentRecord[i][2]
+            td4.textContent = studentRecord[i][3]
+            //             phr data ko row me store kr do
+            tr.append(td1);
+            tr.append(td2);
+            tr.append(td3);
+            tr.append(td4);
+            // ab row kp table k ander rakh do
+            table.append(tr);
+
+            //Record milny k bad found ka variable bnay
+            found++;
+
+
+
+    }
+    }
+    //agr to found ki value 0 k equal h to record nahi mila
+    if(found==0)
+    {
+        //new row
+        let tr = document.createElement('tr');
+        let td = document.createElement('td');
+        td.textContent = "No Record Found";
+        //phly name phr value
+        td.setAttribute('colspan', '4')
+        tr.append(td);
+        table.append(tr);
+
+
+    }
+    // id value ko empty kr do
+    document.getElementById('searchid').value="";
+    }
+    }
+    else
+    {
+
+        //agr koi b record add nai h
+        alert("Database is Empty");
+    }
+    }
+
+
+        // Update tab js
+
+    function updateRecord()
+
+
+        {
+            if(numberofstudent>0)
+        {
+            let stdid = document.getElementById('updateid').value;
+            let stdname = document.getElementById('updatename').value;
+            let stdclass = document.getElementById('updateclass').value;
+            let stdcgpa = document.getElementById('updatecgpa').value;
+            let found=0;
+
+            if(stdid == "")
+        {
+            alert("***PLEASE FILL STUDENT ID");
+        }
+
+        else if(stdname == "")
+        {
+            alert("***PLEASE FILL STUDENT NAME");
+        }
+
+        else if(stdclass == "")
+        {
+            alert("***PLEASE FILL STUDENT CLASS");
+        }
+
+        else if(stdcgpa == "")
+        {
+            alert("***PLEASE FILL STUDENT CGPA");
+        }
+
+        else
+        {
+
+
+            //phly id ko search kro
+
+            for( let i = 0; i < numberofstudent; i++)
+        {
+            if(stdid == studentRecord[i][0])
+        {
+            studentRecord[i][1]=stdname;
+            studentRecord[i][2]=stdclass;
+            studentRecord[i][3]=stdcgpa;
+            alert("New student Record Updated successfully");
+            found++;
+
+            
+
+        }
+        }
+        if(found==0)
+        {
+            alert("No Student ID Found");
+        }
+    
+             stdid = document.getElementById('updateid').value ="";
+             stdname = document.getElementById('updatename').value ="";
+             stdclass = document.getElementById('updateclass').value ="";
+             stdcgpa = document.getElementById('updatecgpa').value ="";
+    
+
+
+        }
+    }
+    else
+    {
+        alert("Dsatebase is Empty");
+    }
+    }
+
+    // delete tab js
+
+    function deleterecord()
+    {
+        if(numberofstudent > 0)
+    {
+        let id = document.getElementById('deleteid').value;
+        let found=0;
+          
+        if( id == "")
+    {
+            alert("Please Enter Student ID For Deletion");
+    }
+    else
+    {
+
+        for(let i= 0; i< numberofstudent; i++)
+    {
+        if( id == studentRecord[i][0])
+    {
+        // method for delete row splice function
+        studentRecord.splice(i, 1);
+        alert("Sudent Record Deleted Successfully");
+        numberofstudent--;
+        found++;
+    }
+    }
+      if(found == 0)
+      {
+        alert("Student ID Not Found");
+      }
+        document.getElementById('deleteid').value = "";
+    }
+    }
+    else
+    {
+        alert("Datebase is Empty");
+    }
+    }
+
+</script>
+</body>
+</html>
